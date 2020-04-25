@@ -3,7 +3,8 @@
 class StateName extends Phaser.State {
     //vai buscar as imagens e sons que vão ser usados
 	preload() {
-		//...
+		this.load.image('sky','sources/sky.png');
+		
 	}
 
     //cria os objectos (plataformas, jogador,etc)

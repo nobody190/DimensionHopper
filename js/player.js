@@ -27,7 +27,7 @@ var right = game.input.keyboard.addKey("D");
 var up = game.input.keyboard.addKey("W");
 game.physics.enable(player, Phaser.Physics.ARCADE);
 
-player = new Player(playerObject);
+var player = new Player(playerObject);
 
 
 //nas funções update()

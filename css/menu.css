@@ -1,0 +1,34 @@
+body{
+    background-image: url("../sources/background.png");
+    /*responsive background*/
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /*color while loading*/
+    background-color: #464646;
+}
+header{
+    margin: auto;
+    height: 200px;
+    width: 50%;
+    background-image: url("../sources/title.png");
+    background-repeat:no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+nav{
+    margin: auto;
+    width: 50%;
+}
+button{
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block;
+    text-overflow: clip;
+    /*change font*/
+    width: 100%;
+}

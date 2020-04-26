@@ -5,7 +5,7 @@ class Player{
     }
 
     jumpUp(){
-        this.object.setVelocitY(-100);
+        this.object.setVelocityY(-100);
     }
     moveLeft(){
         this.object.setVelocityX(-100)

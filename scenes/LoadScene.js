@@ -1,3 +1,5 @@
+//DE MOMENTO ISTO NÃO ESTÁ A SER USADO
+
 import {CST} from "../js/CST.js"
 import {MenuScene} from "../scenes/MenuScene.js";
 
@@ -37,7 +39,7 @@ export class LoadScene extends Phaser.Scene{
     }
     create(){
         /*add scene dynamically*/
-        this.scene.add(CST.SCENES.MENU, MenuScene, false);
+        this.scene.add(CST.SCENES.MENU, MenuScene, false);/*se o terceiro parametro for true nao e preciso o scene.start*/
         this.scene.start(CST.SCENES.MENU, "hello from LoadScene");
     }
 }

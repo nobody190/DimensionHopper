@@ -1,9 +1,9 @@
 import {CST} from "../js/CST.js"
 
-export class OptionScene extends Phaser.scene{
+export class OptionScene extends Phaser.Scene{
     constructor(){
         super({
-            key: CST.SCENES.MENU
+            key: CST.SCENES.OPTIONS
         })
     }
     init(data){

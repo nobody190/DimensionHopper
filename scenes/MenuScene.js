@@ -1,4 +1,5 @@
 import {CST} from "../js/CST.js"
+import {OptionScene} from "../scenes/OptionScene.js";
 
 export class MenuScene extends Phaser.Scene{
     constructor(){

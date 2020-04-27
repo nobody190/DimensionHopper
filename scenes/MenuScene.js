@@ -76,7 +76,7 @@ export class MenuScene extends Phaser.Scene{
                         /*load continue*/
                         break;
                     case 2:
-                        /*load options*/
+                        this.scene.add("OptionsScene", OptionsScene, true);
                         break;
                     case 4:
                         /*load ranking*/

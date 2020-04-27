@@ -1,4 +1,5 @@
 import {CST} from "../js/CST.js"
+import {OptionScene} from "../scenes/OptionScene.js";
 
 export class MenuScene extends Phaser.Scene{
     constructor(){
@@ -76,7 +77,7 @@ export class MenuScene extends Phaser.Scene{
                         /*load continue*/
                         break;
                     case 2:
-                        /*load options*/
+                        this.scene.add("OptionScene", OptionScene, true);
                         break;
                     case 4:
                         /*load ranking*/

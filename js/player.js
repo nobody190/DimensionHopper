@@ -1,4 +1,4 @@
-"use strict"
+/*"use strict"
 class Player{
     constructor(object){
         this.object = object;
@@ -13,12 +13,13 @@ class Player{
     moveRight(){
         this.object.setVelocityX(100)
     }
-}
+}*/
 
 
 
 
 //este vai mais ou menos ser o código genérico a usar sempre que queremos criar o jogador
+//ou talvez não ups
 
 //nas funções create()
 var playerObject = game.add.sprite(0, 0, "player");

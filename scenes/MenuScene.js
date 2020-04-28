@@ -1,5 +1,6 @@
 import {CST} from "../js/CST.js"
 import {OptionScene} from "../scenes/OptionScene.js";
+import {LevelScene1} from "../scenes/LevelScene1.js";
 
 export class MenuScene extends Phaser.Scene{
     constructor(){
@@ -72,6 +73,7 @@ export class MenuScene extends Phaser.Scene{
                 switch (i) {
                     case 0:
                         /*load new game*/
+                        this.scene.add("LevelScene1", LevelScene1, true);
                         break;
                     case 1:
                         /*load continue*/

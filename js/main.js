@@ -6,10 +6,16 @@ import {MenuScene} from "../scenes/MenuScene.js";
 var load = new LoadScene();
 var menu = new MenuScene();
 */
-let game = new Phaser.Game({
+export var game = new Phaser.Game({
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    physics: {
+        default: 'arcade',
+        arcade:{
+            gravity: {y: 1000},
+        }
+    },
     scene:[MenuScene]
 });
 /*

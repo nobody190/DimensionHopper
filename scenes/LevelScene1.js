@@ -28,12 +28,12 @@ export class LevelScene1 extends Phaser.Scene{
         
         var platform1 = platforms.create(0, 350, "ground").setOrigin(0, 0);
         platform1.scaleX = 0.6;
-        platform1.scaleY = 6.5;
+        platform1.scaleY = 8;
         platform1.refreshBody();//refresh body is needed, otherwise add.collider would create a hitbox for the old unscaled sprite
 
         var platform2 = platforms.create(800, 350, "ground").setOrigin(1, 0);
         platform2.scaleX = 0.6;
-        platform2.scaleY = 6.5;
+        platform2.scaleY = 8;
         platform2.refreshBody();
 
         var traps = this.add.sprite(245, 500, "spikes").setOrigin(0, 0);//need collision detection to kill player if he touches spikes

@@ -73,7 +73,8 @@ export class MenuScene extends Phaser.Scene{
                 switch (i) {
                     case 0:
                         /*load new game*/
-                        this.scene.add("LevelScene1", LevelScene1, true);
+                        this.scene.add("LevelScene1", LevelScene1, false);
+                        this.scene.start(CST.SCENES.LEVEL1, "hello from MenuScene");
                         break;
                     case 1:
                         /*load continue*/

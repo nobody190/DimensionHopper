@@ -11,17 +11,38 @@ export class LevelScene1 extends Phaser.Scene{
     }
     preload(){
         //load images
-        this.load.image("title", "../sources/title.png");
-        this.load.image("door", "../sources/door.png");
-        this.load.image("sky", "../sources/sky.png");
+        /*this.load.image("door", "../sources/door.png");
         this.load.image("spikes", "../sources/sharp.png");
-        this.load.image("ground", "../sources/ground.png");
-        this.load.image("background", "../sources/background.png");
+        this.load.image("ground", "../sources/ground.png");*/
+        this.load.image("sky", "../sources/sky.png");
+
+        this.load.image("tileset", "../sources/tilemap.png");
+        this.load.tilemapTiledJSON("level", "../sources/Level1Tilemap.json");
     }
     create(){
 
-        this.add.image(400, 300, 'sky');
+        this.add.image(0, 0, 'sky').setOrigin(0, 0);
+        
 
+        var level = this.make.tilemap({key: "level"});
+        var tileset = level.addTilesetImage("DimensionHopperTileset", "tileset");
+
+        var levelLayer = level.createStaticLayer("levelLayer", tileset, 0, 0);
+
+        /*levelLayer.setCollisionByProperty({ collides: true });
+
+        this.matter.world.convertTilemapLayer(levelLayer);*/
+
+
+
+
+
+
+
+
+
+
+        /*
         //Platforms are all going to be part of the same physics group
         //All they do is provide something to support the player so he can move and jump
         var platforms = this.physics.add.staticGroup();
@@ -37,7 +58,7 @@ export class LevelScene1 extends Phaser.Scene{
         platform2.refreshBody();
 
         var traps = this.add.sprite(245, 500, "spikes").setOrigin(0, 0);//need collision detection to kill player if he touches spikes
-        traps.scaleX = 0.39;
+        //gtraps.scaleX = 0.39;
 
         var exit = this.add.sprite(800, 350, "door").setOrigin(1, 1);//need collision detection to advance player to next level if he reaches the exit
 
@@ -46,10 +67,10 @@ export class LevelScene1 extends Phaser.Scene{
         cursors = this.input.keyboard.createCursorKeys();
         player.setCollideWorldBounds(true);//boundaries of the screen count as walls/ground
 
-        this.physics.add.collider(player, platforms);
+        this.physics.add.collider(player, platforms);*/
     }
     update(){
-        if(cursors.up.isDown && player.body.touching.down){
+        /*if(cursors.up.isDown && player.body.touching.down){
             player.setVelocityY(-500);
         }
         if(cursors.left.isDown){
@@ -61,7 +82,8 @@ export class LevelScene1 extends Phaser.Scene{
 
         else{
             player.setVelocityX(0);//this has to be changed to be based off of atrition between materials, otherwise level 3 will not work
-        }
+                                   //clever use of player.body.touching.down might make use of above unnecessary
+        }*/
         
     }
 }

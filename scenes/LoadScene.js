@@ -15,7 +15,7 @@ export class LoadScene extends Phaser.Scene{
 
     }
     preload(){
-        /*load images and sound*/
+        /*load images*/
         this.load.image("title", "../sources/title.png");
         this.load.image("background", "../sources/background.png");
         this.load.image("play", "../sources/play.png");
@@ -24,6 +24,14 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("ranking", "../sources/ranking.png");
         this.load.image("quit", "../sources/quit.png");
         this.load.image("black", "../sources/black.png");
+        this.load.image("optionsTitle", "../sources/optionsTitle.png");
+        this.load.image("portalColor", "../sources/portal_color.png");
+        this.load.image("musicOn", "../sources/music_on.png");
+        this.load.image("musicOff", "../sources/music_off.png");
+        this.load.image("back", "../sources/back.png");
+        /*load audio*/
+        this.load.audio("mainTheme", "../sources/title_theme.mp3");
+        this.load.audio("hoverSound", "../sources/move.wav");
         /*loading bar*/
         let loadingBar = this.add.graphics({
             fillStyle:{

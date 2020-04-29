@@ -10,13 +10,10 @@ export class LevelScene1 extends Phaser.Scene{
         })
     }
     preload(){
-        //load images
-        this.load.image("title", "../sources/title.png");
         this.load.image("door", "../sources/door.png");
         this.load.image("sky", "../sources/sky.png");
         this.load.image("spikes", "../sources/sharp.png");
         this.load.image("ground", "../sources/ground.png");
-        this.load.image("background", "../sources/background.png");
         this.load.spritesheet("walk", "../sources/player_walk.png", {frameWidth: 295, frameHeight: 470});
     }
     create(){

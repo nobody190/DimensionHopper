@@ -13,11 +13,6 @@ export class OptionScene extends Phaser.Scene{
     }
     preload(){
         /*load images and sound*/
-        this.load.image("optionsTitle", "../sources/optionsTitle.png");
-        this.load.image("portalColor", "../sources/portal_color.png");
-        this.load.image("musicOn", "../sources/music_on.png");
-        this.load.image("musicOff", "../sources/music_off.png");
-        this.load.image("back", "../sources/back.png");
     }
     create(){
         /*black background*/

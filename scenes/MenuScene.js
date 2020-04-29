@@ -20,6 +20,9 @@ export class MenuScene extends Phaser.Scene{
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height *0.20, "title").setScale(0.15).setDepth(1);
         /*space background*/
         this.add.image(0, 0, "background").setOrigin(0).setDepth(0);
+        /*play music*/
+        this.sound.pauseOnBlur = false;
+        this.sound.play("mainTheme", {loop: true});
         /*buttons*/
         let btn = [];
         btn[0] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5, "play").setScale(0.5).setDepth(1);
@@ -33,10 +36,12 @@ export class MenuScene extends Phaser.Scene{
 
             btn[i].on("pointerover", ()=>{
                 btn[i].setScale(0.6);
+                this.sound.play("hoverSound");
             });
 
             btn[i].on("pointerout", ()=>{
                 btn[i].setScale(0.5);
+                this.sound.removeByKey("hoverSound");
             });
 
             btn[i].on("pointerup", ()=>{

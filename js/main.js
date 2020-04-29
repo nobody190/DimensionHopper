@@ -1,7 +1,6 @@
 import '../lib/phaser.js'
 
 import {LoadScene} from "../scenes/LoadScene.js";
-import {MenuScene} from "../scenes/MenuScene.js";
 /*
 var load = new LoadScene();
 var menu = new MenuScene();
@@ -16,7 +15,7 @@ export var game = new Phaser.Game({
             gravity: {y: 1000},
         }
     },
-    scene:[MenuScene]
+    scene:[LoadScene]
 });
 /*
 game.scene.add('LoadScreen', load);

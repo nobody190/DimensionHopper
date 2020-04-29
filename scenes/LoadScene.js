@@ -2,6 +2,8 @@
 
 import {CST} from "../js/CST.js"
 import {MenuScene} from "../scenes/MenuScene.js";
+import {LevelScene1} from "../scenes/LevelScene1.js";
+import {OptionScene} from "../scenes/OptionScene.js";
 
 export class LoadScene extends Phaser.Scene{
     constructor(){
@@ -21,6 +23,7 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("options", "../sources/options.png");
         this.load.image("ranking", "../sources/ranking.png");
         this.load.image("quit", "../sources/quit.png");
+        this.load.image("black", "../sources/black.png");
         /*loading bar*/
         let loadingBar = this.add.graphics({
             fillStyle:{
@@ -38,8 +41,11 @@ export class LoadScene extends Phaser.Scene{
         });
     }
     create(){
-        /*add scene dynamically*/
-        this.scene.add(CST.SCENES.MENU, MenuScene, false);/*se o terceiro parametro for true nao e preciso o scene.start*/
-        this.scene.start(CST.SCENES.MENU, "hello from LoadScene");
+        /*add scenes dynamically*/
+        this.scene.add(CST.SCENES.MENU, MenuScene, false);
+        this.scene.add(CST.SCENES.OPTIONS, OptionScene, false);
+        this.scene.add(CST.SCENES.LEVEL1, LevelScene1, false);
+        /*start scenes dynamically*/
+        this.scene.start(CST.SCENES.MENU);
     }
 }

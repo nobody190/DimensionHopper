@@ -7,12 +7,13 @@ var menu = new MenuScene();
 */
 export var game = new Phaser.Game({
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 840,
+    height: 672,
     physics: {
-        default: 'arcade',
+        default: 'matter',
         arcade:{
-            gravity: {y: 1000},
+            gravity: {y: 1},
+            debug:true
         }
     },
     scene:[LoadScene]

@@ -7,8 +7,8 @@ var menu = new MenuScene();
 */
 export var game = new Phaser.Game({
     type: Phaser.AUTO,
-    width: 840,
-    height: 672,
+    width: 823,
+    height: 640,
     physics: {
         default: 'matter',
         arcade:{

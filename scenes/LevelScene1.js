@@ -16,7 +16,7 @@ export class LevelScene1 extends Phaser.Scene{
         this.load.image("ground", "../sources/ground.png");*/
         this.load.image("sky", "../sources/sky.png");
 
-        this.load.image("tileset", "../sources/tilemap.png");
+        this.load.image("tileset", "../sources/tileset.png");
         this.load.tilemapTiledJSON("level", "../sources/Level1Tilemap.json");
     }
     create(){

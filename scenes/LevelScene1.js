@@ -11,8 +11,8 @@ export class LevelScene1 extends Phaser.Scene{
     }
     preload(){
         //load images
-        /*this.load.image("door", "../sources/door.png");
-        this.load.image("spikes", "../sources/sharp.png");
+        this.load.image("door", "../sources/door.png");
+        /*this.load.image("spikes", "../sources/sharp.png");
         this.load.image("ground", "../sources/ground.png");*/
         this.load.image("sky", "../sources/sky.png");
 
@@ -22,19 +22,20 @@ export class LevelScene1 extends Phaser.Scene{
     create(){
 
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
-        
+        this.matter.world.setBounds(0, 0, game.config.width, game.config.height);        
 
         var level = this.make.tilemap({key: "level"});
         var tileset = level.addTilesetImage("DimensionHopperTileset", "tileset");
 
         var levelLayer = level.createStaticLayer("levelLayer", tileset, 0, 0);
 
-        /*levelLayer.setCollisionByProperty({ collides: true });
+        levelLayer.setCollisionByProperty({ collides: true });
 
-        this.matter.world.convertTilemapLayer(levelLayer);*/
+        this.matter.world.convertTilemapLayer(levelLayer);
 
+        player = this.matter.add.image(290, 0, "door");
 
-
+        cursors = this.input.keyboard.createCursorKeys();
 
 
 
@@ -71,16 +72,19 @@ export class LevelScene1 extends Phaser.Scene{
     }
     update(){
         /*if(cursors.up.isDown && player.body.touching.down){
-            player.setVelocityY(-500);
-        }
+            player.setVelocityY(-5);
+        }*/
+        
         if(cursors.left.isDown){
-            player.setVelocityX(-200);
+            //player.setVelocityX(-2);
+            player.setVelocityX(-2)
         }
         else if(cursors.right.isDown){
-            player.setVelocityX(200);
+            player.setVelocityX(2);
         }
 
-        else{
+        
+        /*else{
             player.setVelocityX(0);//this has to be changed to be based off of atrition between materials, otherwise level 3 will not work
                                    //clever use of player.body.touching.down might make use of above unnecessary
         }*/

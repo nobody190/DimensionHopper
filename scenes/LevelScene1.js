@@ -33,7 +33,7 @@ export class LevelScene1 extends Phaser.Scene{
 
         this.matter.world.convertTilemapLayer(levelLayer);
 
-        player = this.matter.add.image(290, 0, "door");
+        player = this.matter.add.image(100, 0, "door");
 
         cursors = this.input.keyboard.createCursorKeys();
 
@@ -76,18 +76,12 @@ export class LevelScene1 extends Phaser.Scene{
         }*/
         
         if(cursors.left.isDown){
-            //player.setVelocityX(-2);
             player.setVelocityX(-2)
         }
         else if(cursors.right.isDown){
             player.setVelocityX(2);
         }
-
-        
-        /*else{
-            player.setVelocityX(0);//this has to be changed to be based off of atrition between materials, otherwise level 3 will not work
-                                   //clever use of player.body.touching.down might make use of above unnecessary
-        }*/
+        player.setRotation(0);
         
     }
 }

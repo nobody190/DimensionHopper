@@ -33,13 +33,27 @@ export class LevelScene1 extends Phaser.Scene{
 
         this.matter.world.convertTilemapLayer(levelLayer);
 
-        player = this.matter.add.image(100, 0, "door");
+        player = this.matter.add.sprite(150, 150, "door");
 
         cursors = this.input.keyboard.createCursorKeys();
 
+        //tipo de lógica para os picos e botões (talvez também para o fim)
+        this.matter.world.on("collisionstart", event => {
+        
+            event.pairs.forEach(pair => {
 
+                const { bodyA, bodyB } = pair;
 
+                //console.log(bodyB.id);
+                //console.log("chao " + bodyA.id);
+                //console.log("jogador " + player.body.id);
 
+                //if (bodyB is the player AND bodyA is a spike) OR (if bodyB is a spike AND bodyA is the player)
+                if ((bodyB.id == player.body.id && (bodyA.id < 157 && bodyA.id > 123)) || ((bodyB.id < 157 && bodyB.id > 123 && bodyB.id != player.body.id) && bodyA.id == player.body.id)) {
+                    console.log("MORRESTE");
+                }
+            });
+        });
 
 
 
@@ -82,6 +96,10 @@ export class LevelScene1 extends Phaser.Scene{
             player.setVelocityX(2);
         }
         player.setRotation(0);
+
+        
+
+
         
     }
 }

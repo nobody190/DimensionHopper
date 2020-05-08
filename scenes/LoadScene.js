@@ -1,9 +1,10 @@
-//DE MOMENTO ISTO NÃO ESTÁ A SER USADO
 
 import {CST} from "../js/CST.js"
 import {MenuScene} from "../scenes/MenuScene.js";
 import {LevelScene1} from "../scenes/LevelScene1.js";
+import {LevelScene2} from "../scenes/LevelScene2.js";
 import {OptionScene} from "../scenes/OptionScene.js";
+import {EndLevelScene} from "../scenes/EndLevelScene.js";
 
 export class LoadScene extends Phaser.Scene{
     constructor(){
@@ -29,6 +30,7 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("musicOn", "../sources/music_on.png");
         this.load.image("musicOff", "../sources/music_off.png");
         this.load.image("back", "../sources/back.png");
+        this.load.image("youwon", "../sources/youwon.png")
         /*load audio*/
         this.load.audio("mainTheme", "../sources/title_theme.mp3");
         this.load.audio("hoverSound", "../sources/move.wav");
@@ -53,6 +55,8 @@ export class LoadScene extends Phaser.Scene{
         this.scene.add(CST.SCENES.MENU, MenuScene, false);
         this.scene.add(CST.SCENES.OPTIONS, OptionScene, false);
         this.scene.add(CST.SCENES.LEVEL1, LevelScene1, false);
+        this.scene.add(CST.SCENES.LEVEL2, LevelScene2, false);
+        this.scene.add(CST.SCENES.LEVEL_END, EndLevelScene, false);
         /*start scenes dynamically*/
         this.scene.start(CST.SCENES.MENU);
     }

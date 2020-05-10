@@ -84,6 +84,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -163,6 +168,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -206,6 +216,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -249,6 +264,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -292,6 +312,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -367,6 +392,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":true
                         }]
@@ -490,6 +520,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -531,6 +566,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -576,6 +616,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -619,6 +664,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -626,6 +676,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -637,6 +692,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -644,6 +704,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -678,6 +743,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -708,6 +778,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -753,6 +828,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -796,6 +876,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -839,6 +924,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -938,6 +1028,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -981,6 +1076,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1077,6 +1177,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1177,6 +1282,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -1281,6 +1391,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1383,6 +1498,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1426,6 +1546,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1469,6 +1594,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1557,6 +1687,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1600,6 +1735,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1688,6 +1828,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1746,6 +1891,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -1808,6 +1958,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -1866,6 +2021,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -1946,6 +2106,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2024,6 +2189,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2033,6 +2203,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2042,6 +2217,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2051,6 +2231,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2084,6 +2269,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2093,6 +2283,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2100,6 +2295,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -2180,6 +2380,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2258,6 +2463,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2337,6 +2547,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2369,6 +2584,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2423,6 +2643,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2430,6 +2655,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]
@@ -2441,6 +2671,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"kills",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -2448,6 +2683,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"kills",
                          "type":"bool",
                          "value":false
                         }]

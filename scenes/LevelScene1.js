@@ -51,12 +51,16 @@ export class LevelScene1 extends Phaser.Scene{
                 const { bodyA, bodyB } = pair;
 
                 //console.log(bodyB.id);
-                //console.log(bodyA);
+                //console.log(bodyB.id == player.body.id && (bodyA.parent.gameObject.body.gameObject.tile.properties.kills));//I got to the tile through a fairly ugly and unpleasant rummage of the matter object properties
                 //console.log("jogador " + player.body.id);
 
-                //if (bodyB is the player AND bodyA is a spike) OR (if bodyB is a spike AND bodyA is the player)
-                if ((bodyB.id == player.body.id && (bodyA.id < 157 && bodyA.id > 123)) || ((bodyB.id < 157 && bodyB.id > 123 && bodyB.id != player.body.id) && bodyA.id == player.body.id)) {
-                    console.log("MORRESTE");
+                
+                if(bodyA.parent.gameObject.body.gameObject.tile instanceof Phaser.Tilemaps.Tile){
+                    //if (bodyB is the player AND bodyA is a hazard (spike or poison)) OR (if bodyB is a hazard AND bodyA is the player)
+                    if ((bodyB.id == player.body.id && (bodyA.parent.gameObject.body.gameObject.tile.properties.kills)) || ((bodyA.parent.gameObject.body.gameObject.tile.properties.kills) && bodyA.id == player.body.id)) {
+                        console.log("MORRESTE");
+                        this.scene.restart();
+                    }
                 }
             });
         });

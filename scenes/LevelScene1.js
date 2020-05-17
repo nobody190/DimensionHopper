@@ -1,7 +1,6 @@
 import {CST} from "../js/CST.js"
 import {game} from "../js/main.js"
-var cursors;
-var player;
+import Player from "../js/player.js";
 
 export class LevelScene1 extends Phaser.Scene{
     constructor(){
@@ -11,94 +10,110 @@ export class LevelScene1 extends Phaser.Scene{
     }
     preload(){
         //load images
-        this.load.image("door", "../sources/olddoor.png");
-
-        this.load.image("exit", "../sources/door.png");
-        /*this.load.image("spikes", "../sources/sharp.png");
-        this.load.image("ground", "../sources/ground.png");*/
+        this.load.image("exit_closed", "../sources/DoorLocked.png");
+        this.load.image("exit_opening", "../sources/DoorUnlocked.png");
+        this.load.image("exit_opened", "../sources/DoorOpen.png");
         this.load.image("sky", "../sources/sky.png");
-
         this.load.image("tileset", "../sources/tileset.png");
         this.load.tilemapTiledJSON("level", "../sources/Level1Tilemap.json");
+        /*player atlas*/
+        this.load.atlas("player", "../sources/characterMoves.png", "../sources/characterMoves.json");
     }
     create(){
-
+        /*background*/
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
-        this.matter.world.setBounds(0, 0, game.config.width, game.config.height);        
+        this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
+        /*load tilemap and tileset*/
+        const map = this.make.tilemap({key: "level"});
+        const tileset = map.addTilesetImage("DimensionHopperTileset", "tileset");
+        /*get layers*/
+        const levelLayer = map.createStaticLayer("levelLayer", tileset, 0, 0);
 
-        var level = this.make.tilemap({key: "level"});
-        var tileset = level.addTilesetImage("DimensionHopperTileset", "tileset");
-
-        var levelLayer = level.createStaticLayer("levelLayer", tileset, 0, 0);
         levelLayer.setCollisionByProperty({ collides: true });
+
         this.matter.world.convertTilemapLayer(levelLayer);
 
-        var exit = this.matter.add.sprite(0, 267, "exit");
-        exit.setStatic(true);
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+        this.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-        player = this.matter.add.sprite(150, 150, "door");
-        player.setFriction(0.1);
-
-        cursors = this.input.keyboard.createCursorKeys();
-        //tipo de lógica para os picos e botões (talvez também para o fim)
-
-        //collision type on start only (so doesn't trigger during a collision, or after it stops)
-        this.matter.world.on("collisionstart", event => {
-        
-            //
-            event.pairs.forEach(pair => {
-
-                const { bodyA, bodyB } = pair;
-
-                //console.log(bodyB.id);
-                //console.log(bodyB.id == player.body.id && (bodyA.parent.gameObject.body.gameObject.tile.properties.kills));//I got to the tile through a fairly ugly and unpleasant rummage of the matter object properties
-                //console.log("jogador " + player.body.id);
-
-                
-                if(bodyA.parent.gameObject.body.gameObject.tile instanceof Phaser.Tilemaps.Tile){
-                    //if (bodyB is the player AND bodyA is a hazard (spike or poison)) OR (if bodyB is a hazard AND bodyA is the player)
-                    if ((bodyB.id == player.body.id && (bodyA.parent.gameObject.body.gameObject.tile.properties.kills)) || ((bodyA.parent.gameObject.body.gameObject.tile.properties.kills) && bodyA.id == player.body.id)) {
-                        console.log("MORRESTE");
-                        this.scene.restart();
-                    }
-                }
-            });
+        const help = this.add.text(16, 16, "Arrows/WASD to move the player.", {
+            fontSize: "18px",
+            padding: { x: 10, y: 5 },
+            backgroundColor: "#ffffff",
+            fill: "#000000"
         });
+        help.setScrollFactor(0).setDepth(1000);
+        /*add player in spawn point*/
+        const { x, y } = map.findObject("Spawn", obj => obj.name === "Spawn Point");
+        this.player = new Player(this, x, y);
+        /*add door*/
 
-
-        this.matter.world.on("collisionstart", event => {
-        
-            //
-            event.pairs.forEach(pair => {
-
-                const { bodyA, bodyB } = pair;
-
-                //console.log(bodyB.id);
-                //console.log(bodyA);
-                //console.log("jogador " + player.body.id);
-
-                if (bodyA.id == exit.body.id && bodyB.id == player.body.id) {
-                    
-                    this.scene.launch(CST.SCENES.LEVEL_END);
-                    console.log("Ganhaste!");
-                    this.scene.start(CST.SCENES.LEVEL2);
-                }
-            });
+        this.unsubscribePlayerCollide = this.matterCollision.addOnCollideStart({
+            objectA: this.player.sprite,
+            callback: this.onPlayerCollide,
+            context: this
+        });
+        /*add door*/
+        map.getObjectLayer("Door").objects.forEach(point => {
+            this.door = this.add.image(point.x, point.y, 'exit_closed');
+        });
+        /*add door sensor*/
+        const rect = map.findObject("Sensors", obj => obj.name === "End");
+        const celebrateSensor = this.matter.add.rectangle(
+            rect.x + rect.width / 2,
+            rect.y + rect.height / 2,
+            rect.width,
+            rect.height,
+            {
+                isSensor: true, // It shouldn't physically interact with other bodies
+                isStatic: true // It shouldn't move
+            }
+        );
+        this.unsubscribeOpenDoor = this.matterCollision.addOnCollideStart({
+            objectA: this.player.sprite,
+            objectB: celebrateSensor,
+            callback: this.onPlayerWin,
+            context: this
         });
     }
+    onPlayerWin() {
+        const door = this.door;
+        const player = this.player;
+        const cam = this.cameras.main;
+        const scene = this.scene;
+        const nextScene = CST.SCENES.LEVEL2;
+        /*door opening animations happens only once*/
+        this.unsubscribeOpenDoor();
+        /*change door texture to opening*/
+        door.setTexture('exit_opening');
+        /*delay*/
+        setTimeout(function(){
+            /*change door texture to opened*/
+            door.setTexture('exit_opened');
+            /*fade out to next level*/
+            player.freeze();
+            cam.fade(250, 0, 0, 0);
+            cam.once("camerafadeoutcomplete", () => scene.start(nextScene));
+        }, 2000);
+    }
+    onPlayerCollide({ gameObjectB }) {
+        if (!gameObjectB || !(gameObjectB instanceof Phaser.Tilemaps.Tile)) return;
+
+        const tile = gameObjectB;
+
+        // Check the tile property set in Tiled (you could also just check the index if you aren't using
+        // Tiled in your game)
+        if (tile.properties.kills) {
+            // Unsubscribe from collision events so that this logic is run only once
+            this.unsubscribePlayerCollide();
+
+            this.player.freeze();
+            const cam = this.cameras.main;
+            cam.fade(250, 0, 0, 0);
+            cam.once("camerafadeoutcomplete", () => this.scene.restart());
+        }
+    }
     update(){
-        
-        if(cursors.left.isDown){
-            player.setVelocityX(-2);
-        }
-        else if(cursors.right.isDown){
-            player.setVelocityX(2);
-        }
-        player.setRotation(0);
-
-        
-
-
         
     }
 }

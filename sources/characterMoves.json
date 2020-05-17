@@ -1,0 +1,370 @@
+{
+	"textures": [
+		{
+			"image": "characterMoves.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2030,
+				"h": 130
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "run/5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 76,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 73,
+						"h": 124
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 73,
+						"h": 124
+					},
+					"anchor": {
+						"x": 0.53947368,
+						"y": 0.3984375
+					}
+				},
+				{
+					"filename": "run/0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 85,
+						"h": 125
+					},
+					"frame": {
+						"x": 76,
+						"y": 1,
+						"w": 85,
+						"h": 125
+					},
+					"anchor": {
+						"x": 0.50526316,
+						"y": 0.40625
+					}
+				},
+				{
+					"filename": "run/1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 2,
+						"w": 78,
+						"h": 126
+					},
+					"frame": {
+						"x": 163,
+						"y": 1,
+						"w": 78,
+						"h": 126
+					},
+					"anchor": {
+						"x": 0.65263158,
+						"y": 0.40625
+					}
+				},
+				{
+					"filename": "run/2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 34,
+						"y": 2,
+						"w": 56,
+						"h": 126
+					},
+					"frame": {
+						"x": 243,
+						"y": 1,
+						"w": 56,
+						"h": 126
+					},
+					"anchor": {
+						"x": 0.68421053,
+						"y": 0.421875
+					}
+				},
+				{
+					"filename": "walk/2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 2,
+						"w": 52,
+						"h": 126
+					},
+					"frame": {
+						"x": 301,
+						"y": 1,
+						"w": 52,
+						"h": 126
+					},
+					"anchor": {
+						"x": 0.7263157894736842,
+						"y": 0.421875
+					}
+				},
+				{
+					"filename": "run/4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 22,
+						"y": 0,
+						"w": 46,
+						"h": 127
+					},
+					"frame": {
+						"x": 355,
+						"y": 1,
+						"w": 46,
+						"h": 127
+					},
+					"anchor": {
+						"x": 0.46315789,
+						"y": 0.390625
+					}
+				},
+				{
+					"filename": "walk/1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 21,
+						"y": 1,
+						"w": 65,
+						"h": 127
+					},
+					"frame": {
+						"x": 403,
+						"y": 1,
+						"w": 65,
+						"h": 127
+					},
+					"anchor": {
+						"x": 0.6210526315789474,
+						"y": 0.4140625
+					}
+				},
+				{
+					"filename": "run.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 652,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 652,
+						"h": 128
+					},
+					"frame": {
+						"x": 470,
+						"y": 1,
+						"w": 652,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "run/3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 40,
+						"y": 0,
+						"w": 40,
+						"h": 128
+					},
+					"frame": {
+						"x": 1124,
+						"y": 1,
+						"w": 40,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.61052632,
+						"y": 0.390625
+					}
+				},
+				{
+					"filename": "walk.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 664,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 664,
+						"h": 128
+					},
+					"frame": {
+						"x": 1166,
+						"y": 1,
+						"w": 664,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "walk/0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 128
+					},
+					"frame": {
+						"x": 1832,
+						"y": 1,
+						"w": 70,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.3684210526315789,
+						"y": 0.421875
+					}
+				},
+				{
+					"filename": "walk/3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 48,
+						"y": 0,
+						"w": 37,
+						"h": 128
+					},
+					"frame": {
+						"x": 1904,
+						"y": 1,
+						"w": 37,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.6842105263157895,
+						"y": 0.421875
+					}
+				},
+				{
+					"filename": "walk/4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 41,
+						"y": 0,
+						"w": 35,
+						"h": 128
+					},
+					"frame": {
+						"x": 1943,
+						"y": 1,
+						"w": 35,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.5894736842105263,
+						"y": 0.390625
+					}
+				},
+				{
+					"filename": "walk/5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 95,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 28,
+						"y": 0,
+						"w": 49,
+						"h": 128
+					},
+					"frame": {
+						"x": 1980,
+						"y": 1,
+						"w": 49,
+						"h": 128
+					},
+					"anchor": {
+						"x": 0.5473684210526316,
+						"y": 0.40625
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:e56b9199fb0ae786659538cb50a5f6f0:12ed1fb89a9359b3843b46e72731d456:572fbc086888743aeabcd0b45db8b5a4$"
+	}
+}

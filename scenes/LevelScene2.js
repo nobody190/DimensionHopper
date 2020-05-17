@@ -10,15 +10,7 @@ export class LevelScene2 extends Phaser.Scene{
         })
     }
     preload(){
-        //load images
-        this.load.image("door", "../sources/olddoor.png");
-
-        this.load.image("exit", "../sources/door.png");
-        /*this.load.image("spikes", "../sources/sharp.png");
-        this.load.image("ground", "../sources/ground.png");*/
         this.load.image("sky", "../sources/sky.png");
-
-        this.load.image("tileset", "../sources/tileset.png");
         this.load.tilemapTiledJSON("level2", "../sources/Level2Tilemap.json");
     }
     create(){
@@ -36,55 +28,6 @@ export class LevelScene2 extends Phaser.Scene{
         var exit = this.matter.add.sprite(736, 267, "exit");
         exit.setStatic(true);
 
-        player = this.matter.add.sprite(150, 150, "door");
-        player.setFriction(0.1);
-
-        cursors = this.input.keyboard.createCursorKeys();
-        //tipo de lógica para os picos e botões (talvez também para o fim)
-
-        //collision type on start only (so doesn't trigger during a collision, or after it stops)
-        this.matter.world.on("collisionstart", event => {
-        
-            //
-            event.pairs.forEach(pair => {
-
-                const { bodyA, bodyB } = pair;
-
-                //console.log(bodyB.id);
-                //console.log(bodyB.id == player.body.id && (bodyA.parent.gameObject.body.gameObject.tile.properties.kills));//I got to the tile through a fairly ugly and unpleasant rummage of the matter object properties
-                //console.log("jogador " + player.body.id);
-
-                
-                if(bodyA.parent.gameObject.body.gameObject.tile instanceof Phaser.Tilemaps.Tile){
-                    //if (bodyB is the player AND bodyA is a hazard (spike or poison)) OR (if bodyB is a hazard AND bodyA is the player)
-                    if ((bodyB.id == player.body.id && (bodyA.parent.gameObject.body.gameObject.tile.properties.kills)) || ((bodyA.parent.gameObject.body.gameObject.tile.properties.kills) && bodyA.id == player.body.id)) {
-                        console.log("MORRESTE");
-                        this.scene.restart();
-                    }
-                }
-            });
-        });
-
-
-        this.matter.world.on("collisionstart", event => {
-        
-            //
-            event.pairs.forEach(pair => {
-
-                const { bodyA, bodyB } = pair;
-
-                //console.log(bodyB.id);
-                //console.log(bodyA);
-                //console.log("jogador " + player.body.id);
-
-                if (bodyA.id == exit.body.id && bodyB.id == player.body.id) {
-                    
-                    this.scene.launch(CST.SCENES.LEVEL_END);
-                    console.log("Ganhaste!");
-                    this.scene.start(CST.SCENES.MENU);
-                }
-            });
-        });
     }
     update(){
         

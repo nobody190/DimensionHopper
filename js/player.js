@@ -116,6 +116,7 @@ export default class Player {
             this.isTouching.ground = true;
         }
     }
+
     onBulletCollide({ gameObjectB }) {
         if(!gameObjectB){
             this.canShoot = true;
@@ -127,11 +128,12 @@ export default class Player {
         if(tile.properties.portal){
             const x = this.projectile.sprite.x;
             const y = this.projectile.sprite.y;
+
+            this.projectile.destroy();
+
             let angle = 0;
 
             if(tile.layer.name === 'ceiling') angle = Math.PI;
-
-            this.projectile.destroy();
 
             if(this.portal.next === 1){
                 this.portal.A = this.portal.A.trigger(x, y, angle);
@@ -146,6 +148,7 @@ export default class Player {
             this.canShoot = true;
         }
     }
+
     updatePortal(n){
         switch(n){
             case 1:
@@ -154,6 +157,7 @@ export default class Player {
                 /*Add new collisions*/
                 this.scene.matterCollision.addOnCollideActive({
                     objectA: this.portal.A.sprite,
+                    objectB: this.sprite,
                     callback: this.onPortalACollide,
                     context: this
                 });
@@ -162,40 +166,36 @@ export default class Player {
                 this.scene.matterCollision.removeOnCollideActive({ objectA: this.portal.B.sprite });
                 this.scene.matterCollision.addOnCollideActive({
                     objectA: this.portal.B.sprite,
+                    objectB: this.sprite,
                     callback: this.onPortalBCollide,
                     context: this
                 });
                 break;
         }
     }
-    onPortalACollide(gameObjectB){
-        if(!gameObjectB) return;
-        if(gameObjectB.type === 'Sprite' && this.portal.B.state){
-            /*Set to sensor to avoid collisions*/
-            this.sprite.setSensor(true);
-            /*Set origin to A*/
-            this.origin = 1;
-            /*Activate timer*/
-            this.portalTimer = this.scene.time.addEvent({
-                delay: 20,
-                callback: () => (this.canPortal = true)
-            });
-        }
+
+    onPortalACollide(){
+        /*Set to sensor to avoid collisions*/
+        if(!this.portal.B.state)return;
+        /*Set origin to A*/
+        this.origin = 1;
+        /*Activate timer*/
+        this.portalTimer = this.scene.time.addEvent({
+            delay: 200,
+            callback: () => (this.canPortal = true)
+        });
     }
-    onPortalBCollide(gameObjectB){
-        if(!gameObjectB) return;
-        console.log(gameObjectB.type);
-        if(gameObjectB.type === 'Sprite' && this.portal.A.state){
-            /*Set to sensor to avoid collisions*/
-            this.sprite.setSensor(true);
-            /*Set origin to A*/
-            this.origin = 2;
-            /*Activate timer*/
-            this.portalTimer = this.scene.time.addEvent({
-                delay: 20,
-                callback: () => (this.canPortal = true)
-            });
-        }
+
+    onPortalBCollide(){
+        /*Set to sensor to avoid collisions*/
+        if(!this.portal.A.state)return;
+        /*Set origin to A*/
+        this.origin = 2;
+        /*Activate timer*/
+        this.portalTimer = this.scene.time.addEvent({
+            delay: 200,
+            callback: () => (this.canPortal = true)
+        });
     }
     /*Reset Sensors*/
     resetTouching() {
@@ -223,6 +223,7 @@ export default class Player {
             context: this
         });
     }
+
     update() {
         if (this.destroyed) return;
 
@@ -257,10 +258,12 @@ export default class Player {
                 callback: () => (this.canJump = true)
             });
         }
+        if(this.sprite.x === this.portal.A.coordinates.x || this.sprite.x === this.portal.B.coordinates.x){
+            console.log("Intersection");
+        }
         if(this.canPortal){
             let x = 0; let y = 0;
-            const {width: w, height: h} = this.portal.A.sprite;
-            if(this.origin === 1){
+            if(this.origin === 2){
                 x = this.portal.A.coordinates.x;
                 y = this.portal.A.coordinates.y;
             }
@@ -269,7 +272,7 @@ export default class Player {
                 y = this.portal.B.coordinates.y;
             }
             /*teleport player*/
-            this.sprite.setX(x + w/2).setY(y+h/2);
+            this.sprite.setX(x).setY(y);
             /*reset*/
             this.canPortal = false;
             this.origin = 0;
@@ -282,6 +285,7 @@ export default class Player {
             sprite.setTexture("player", 'run/0.png');
         }
     }
+
     destroy() {
         this.destroyed = true;
         /*remove events*/

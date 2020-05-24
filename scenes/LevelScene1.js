@@ -21,8 +21,8 @@ export class LevelScene1 extends Phaser.Scene{
         const map = this.make.tilemap({key: "level"});
         const tileset = map.addTilesetImage("DimensionHopperTileset", "tileset");
         /*get layers*/
-        const groundLayer = map.createStaticLayer("ground", tileset, 0, 0);
-        const ceilingLayer = map.createStaticLayer("ceiling", tileset, 0, 0);
+        const groundLayer = map.createDynamicLayer("ground", tileset, 0, 0);
+        const ceilingLayer = map.createDynamicLayer("ceiling", tileset, 0, 0);
 
         groundLayer.setCollisionByProperty({ collides: true });
         ceilingLayer.setCollisionByProperty({ collides: true });

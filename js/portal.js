@@ -40,9 +40,7 @@ export default class Portal {
 
         this.coordinates.x = x;
         this.coordinates.y = y;
-
-        if(angle === 0)this.coordinates.orientation =- 1;
-        else this.coordinates.orientation = 1;
+        this.coordinates.orientation = angle;
 
         this.state = true;
     }

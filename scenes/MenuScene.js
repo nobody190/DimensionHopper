@@ -53,7 +53,8 @@ export class MenuScene extends Phaser.Scene{
                         break;
                     case 2:
                         /*start in parallel*/
-                        this.scene.launch(CST.SCENES.OPTIONS, CST.SCENES.MENU);
+                        this.scene.launch(CST.SCENES.OPTIONS);
+                        this.scene.pause(CST.SCENES.MENU);
                         break;
                     case 4:
                         /*load ranking*/

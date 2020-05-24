@@ -19,6 +19,7 @@ export class LoadScene extends Phaser.Scene{
         /*load images*/
         this.load.image("title", "../sources/title.png");
         this.load.image("background", "../sources/background.png");
+        this.load.image("gradient", "../sources/gradient.png");
         this.load.image("play", "../sources/play.png");
         this.load.image("continue", "../sources/continue.png");
         this.load.image("options", "../sources/options.png");

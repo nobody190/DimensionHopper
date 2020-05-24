@@ -1,7 +1,5 @@
 import {CST} from "../js/CST.js"
 import {game} from "../js/main.js"
-var cursors;
-var player;
 
 export class LevelScene2 extends Phaser.Scene{
     constructor(){
@@ -25,23 +23,8 @@ export class LevelScene2 extends Phaser.Scene{
         levelLayer.setCollisionByProperty({ collides: true });
         this.matter.world.convertTilemapLayer(levelLayer);
 
-        var exit = this.matter.add.sprite(736, 267, "exit");
-        exit.setStatic(true);
-
     }
     update(){
-        
-        if(cursors.left.isDown){
-            player.setVelocityX(-2);
-        }
-        else if(cursors.right.isDown){
-            player.setVelocityX(2);
-        }
-        player.setRotation(0);
 
-        
-
-
-        
     }
 }

@@ -30,10 +30,19 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("musicOn", "../sources/music_on.png");
         this.load.image("musicOff", "../sources/music_off.png");
         this.load.image("back", "../sources/back.png");
-        this.load.image("youwon", "../sources/youwon.png")
+        this.load.image("youwon", "../sources/youwon.png");
+        this.load.image("exit_closed", "../sources/DoorLocked.png");
+        this.load.image("exit_opening", "../sources/DoorUnlocked.png");
+        this.load.image("exit_opened", "../sources/DoorOpen.png");
+        this.load.image("sky", "../sources/sky.png");
+        this.load.image("tileset", "../sources/tileset.png");
         /*load audio*/
         this.load.audio("mainTheme", "../sources/title_theme.mp3");
         this.load.audio("hoverSound", "../sources/move.wav");
+        /*atlas*/
+        this.load.atlas("player", "../sources/characterMoves.png", "../sources/characterMoves.json");
+        this.load.atlas("bullet", "../sources/bullet.png", "../sources/bullet.json");
+        this.load.atlas("portal", "../sources/portal.png", "../sources/portal.json");
         /*loading bar*/
         let loadingBar = this.add.graphics({
             fillStyle:{

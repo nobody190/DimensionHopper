@@ -46,7 +46,7 @@ export class MenuScene extends Phaser.Scene{
                 switch (i) {
                     case 0:
                         /*load new game*/
-                        this.scene.start(CST.SCENES.LEVEL3);
+                        this.scene.start(CST.SCENES.LEVEL1);
                         break;
                     case 1:
                         /*load continue*/

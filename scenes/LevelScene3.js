@@ -24,6 +24,24 @@ export class LevelScene3 extends Phaser.Scene{
         this.addObjects();
         /*add collides*/
         this.addColliders();
+        /*add pause label*/
+        this.addPauseLabel();
+    }
+    addPauseLabel(){
+        /*Get screen size*/
+        const width = this.game.config.width;
+        const height = this.game.config.height;
+        /*Add text button to pause and click event*/
+        this.add.text(width - 100, 20, 'Pause', { font: '24px Arial', fill: '#fff' })
+            .setInteractive()
+            .on('pointerdown', () => this.pausedClicked(width, height) );
+
+    }
+    /*Pause events*/
+    pausedClicked(){
+        console.log("Clicked!");
+        this.scene.launch(CST.SCENES.PAUSE, this.scene);
+        this.scene.pause(this.scene.key);
     }
     /*import tile map and create layers*/
     importTileMap(){
@@ -53,7 +71,7 @@ export class LevelScene3 extends Phaser.Scene{
         let aux = this.map.findObject("Button", obj => obj.name === "Point");
         this.button = this.add.image(aux.x, aux.y, 'btn_off').setDepth(1);
         /*Add button*/
-        aux = this.map.findObject("Door", obj => obj.name === "Point")
+        aux = this.map.findObject("Door", obj => obj.name === "Point");
         this.door = this.add.image(aux.x, aux.y, 'exit_closed').setDepth(1);
         /*add player*/
         aux = this.map.findObject("Spawn", obj => obj.name === "Point");
@@ -126,13 +144,21 @@ export class LevelScene3 extends Phaser.Scene{
         if (tile.properties.kills) {
             this.unsubscribePlayerCollide();
             this.player.freeze();
-            const cam = this.cameras.main;
-            cam.fade(250, 0, 0, 0);
-            cam.once("camerafadeoutcomplete", () => this.scene.restart());
+            this.restart();
         }
     }
-    update(){
+    restart (){
+        const cam = this.cameras.main;
+        cam.fade(500, 0, 0, 0);
+        cam.shake(250, 0.01);
 
+        this.time.addEvent({
+            delay: 500,
+            callback: function () {
+                cam.resetFX();
+                this.scene.restart();
+            },
+            callbackScope: this
+        });
     }
-
 }

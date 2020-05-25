@@ -9,58 +9,83 @@ export class LevelScene1 extends Phaser.Scene{
         })
     }
     preload(){
-        //load images
-        this.load.tilemapTiledJSON("level", "../sources/Level1Tilemap.json");
-        /*player atlas*/
+        this.load.image("sky", "../sources/sky.png");
+        this.load.tilemapTiledJSON("level1", "../sources/Level1Tilemap.json");
     }
     create(){
         /*background*/
         this.add.image(0, 0, 'sky').setOrigin(0, 0).setDepth(0);
         this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
         /*load tilemap and tileset*/
-        const map = this.make.tilemap({key: "level"});
-        const tileset = map.addTilesetImage("DimensionHopperTileset", "tileset");
+        this.importTileMap();
+        /*set camera and boundies*/
+        this.setView();
+        /*add objects*/
+        this.addObjects();
+        /*add collides*/
+        this.addColliders();
+        /*add pause label*/
+        this.addPauseLabel();
+    }
+    addPauseLabel(){
+        /*Get screen size*/
+        const width = this.game.config.width;
+        const height = this.game.config.height;
+        /*Add text button to pause and click event*/
+        this.add.text(width - 100, 20, 'Pause', { font: '24px Arial', fill: '#fff' })
+            .setInteractive()
+            .on('pointerdown', () => this.pausedClicked(width, height) );
+
+    }
+    /*Pause events*/
+    pausedClicked(){
+        console.log("Clicked!");
+        this.scene.launch(CST.SCENES.PAUSE, this.scene);
+        this.scene.pause(this.scene.key);
+    }
+    /*import tile map and create layers*/
+    importTileMap(){
+        this.map = this.make.tilemap({key: "level1"});
+        const tileset = this.map.addTilesetImage("DimensionHopperTileset", "tileset");
         /*get layers*/
-        const groundLayer = map.createDynamicLayer("ground", tileset, 0, 0);
-        const ceilingLayer = map.createDynamicLayer("ceiling", tileset, 0, 0);
+        this.groundLayer = this.map.createDynamicLayer("ground", tileset, 0, 0);
+        this.ceilingLayer = this.map.createDynamicLayer("ceiling", tileset, 0, 0);
 
-        groundLayer.setCollisionByProperty({ collides: true });
-        ceilingLayer.setCollisionByProperty({ collides: true });
+        this.groundLayer.setCollisionByProperty({ collides: true });
+        this.ceilingLayer.setCollisionByProperty({ collides: true });
 
-        this.matter.world.convertTilemapLayer(groundLayer);
-        this.matter.world.convertTilemapLayer(ceilingLayer);
-        /*add door*/
-        map.getObjectLayer("Door").objects.forEach(point => {
-            this.door = this.add.image(point.x, point.y, 'exit_closed').setDepth(1);;
-        });
-
-        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        this.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-        const help = this.add.text(16, 16, "Arrows/WASD to move the player.", {
-            fontSize: "18px",
-            padding: { x: 10, y: 5 },
-            backgroundColor: "#ffffff",
-            fill: "#000000"
-        });
-        help.setScrollFactor(0).setDepth(1000);
-        /*add player in spawn point*/
-        const { x, y } = map.findObject("Spawn", obj => obj.name === "Spawn Point");
-        this.player = new Player(this, x, y);
-        /*add door*/
-
+        this.matter.world.convertTilemapLayer(this.groundLayer);
+        this.matter.world.convertTilemapLayer(this.ceilingLayer);
+    }
+    /*set camera and boundaries*/
+    setView() {
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        this.matter.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    }
+    /*add objects*/
+    addObjects(){
+        let aux;
+        /*Add final door*/
+        aux = this.map.findObject("Door", obj => obj.name === "Point");
+        this.door = this.add.image(aux.x, aux.y, 'exit_closed').setDepth(1);
+        /*add player*/
+        aux = this.map.findObject("Spawn", obj => obj.name === "Point");
+        this.player = new Player(this, aux.x, aux.y);
+        /*add door and create sensor*/
+        const rect = this.map.findObject("Door", obj => obj.name === "Sensor");
+        this.doorSensor = this.matter.add.rectangle(rect.x + rect.width / 2, rect.y + rect.height / 2, rect.width, rect.height,{isSensor: true, isStatic: true});
+    }
+    /*add colliders*/
+    addColliders(){
         this.unsubscribePlayerCollide = this.matterCollision.addOnCollideStart({
             objectA: this.player.sprite,
             callback: this.onPlayerCollide,
             context: this
         });
-        /*add door sensor*/
-        const rect = map.findObject("Sensors", obj => obj.name === "End");
-        const levelClear = this.matter.add.rectangle(rect.x + rect.width / 2, rect.y + rect.height / 2, rect.width, rect.height,{isSensor: true, isStatic: true}
-        );
-        this.levelClear = this.matterCollision.addOnCollideStart({
+
+        this.unsubscribeDoorCollide = this.matterCollision.addOnCollideStart({
             objectA: this.player.sprite,
-            objectB: levelClear,
+            objectB: this.doorSensor,
             callback: this.onLevelClear,
             context: this
         });
@@ -71,7 +96,7 @@ export class LevelScene1 extends Phaser.Scene{
         const scene = this.scene;
         const nextScene = CST.SCENES.LEVEL2;
         /*door opening animations happens only once*/
-        this.levelClear();
+        this.unsubscribeDoorCollide();
         this.player.freeze();
         /*change door texture to opening*/
         door.setTexture('exit_opening');
@@ -91,12 +116,22 @@ export class LevelScene1 extends Phaser.Scene{
         if (tile.properties.kills) {
             this.unsubscribePlayerCollide();
             this.player.freeze();
-            const cam = this.cameras.main;
-            cam.fade(250, 0, 0, 0);
-            cam.once("camerafadeoutcomplete", () => this.scene.restart());
+            this.restart();
         }
     }
-    update(){
-        
+    restart (){
+        const cam = this.cameras.main;
+        cam.fade(500, 0, 0, 0);
+        cam.shake(250, 0.01);
+
+        this.time.addEvent({
+            delay: 500,
+            callback: function ()
+            {
+                cam.resetFX();
+                this.scene.restart();
+            },
+            callbackScope: this
+        });
     }
 }

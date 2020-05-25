@@ -5,6 +5,7 @@ import {LevelScene2} from "../scenes/LevelScene2.js";
 import {LevelScene3} from "../scenes/LevelScene3.js";
 import {OptionScene} from "../scenes/OptionScene.js";
 import {EndLevelScene} from "../scenes/EndLevelScene.js";
+import {PauseScene} from "../scenes/PauseScene.js";
 
 export class LoadScene extends Phaser.Scene{
     constructor(){
@@ -22,6 +23,7 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("gradient", "../sources/gradient.png");
         this.load.image("play", "../sources/play.png");
         this.load.image("continue", "../sources/continue.png");
+        this.load.image("pause", "../sources/pause.png");
         this.load.image("options", "../sources/options.png");
         this.load.image("ranking", "../sources/ranking.png");
         this.load.image("quit", "../sources/quit.png");
@@ -38,6 +40,7 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("sky", "../sources/sky.png");
         this.load.image("btn_on", "../sources/btn_on.png");
         this.load.image("btn_off", "../sources/btn_off.png");
+        this.load.image("restart", "../sources/restart.png");
         this.load.image("tileset", "../sources/tileset.png");
         /*load audio*/
         this.load.audio("mainTheme", "../sources/title_theme.mp3");
@@ -70,6 +73,7 @@ export class LoadScene extends Phaser.Scene{
         this.scene.add(CST.SCENES.LEVEL2, LevelScene2, false);
         this.scene.add(CST.SCENES.LEVEL3, LevelScene3, false);
         this.scene.add(CST.SCENES.LEVEL_END, EndLevelScene, false);
+        this.scene.add(CST.SCENES.PAUSE, PauseScene, false);
         /*start scenes dynamically*/
         this.scene.start(CST.SCENES.MENU);
     }

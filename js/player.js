@@ -28,9 +28,8 @@ export default class Player {
         this.canShoot = true;
         this.canPortal = false;
         this.portalEnabled = true;
-        this.jumpTimer = null;
         this.portalTimer = null;
-        this.portalCoolDown = null;
+        this.jumpTimer = null;
         this.origin = 0;
         this.destroyed = false;
 
@@ -44,7 +43,7 @@ export default class Player {
         this.anims.create({
             key: "run",
             frames: frames,
-            frameRate: 10,
+            frameRate: 15,
             repeat: -1
         });
     }
@@ -246,12 +245,14 @@ export default class Player {
                 break;
             case Math.PI/2:
                 this.sprite.setVelocity(speed, 0);
+                console.log("Esquerda" + speed);
                 break;
             case -Math.PI/2:
                 this.sprite.setVelocity(-speed, 0);
                 break;
             case Math.PI:
                 this.sprite.setVelocity(0, speed);
+                console.log("Cima" + speed);
                 break;
         }
     }
@@ -266,20 +267,20 @@ export default class Player {
         const isOnGround = this.isTouching.ground;
         const isInAir = !isOnGround;
         const moveForce = isOnGround ? 0.01 : 0.005;
-
-        if (isLeftKeyDown) {
+        /*track inputs*/
+        if(isLeftKeyDown){
+            /*flips sprite*/
             sprite.setFlipX(true);
-            if (!(isInAir && this.isTouching.left)) {
-                sprite.applyForce({x: -moveForce, y: 0});
-            }
-        } else if (isRightKeyDown) {
-            sprite.setFlipX(false);
-            if (!(isInAir && this.isTouching.right)) {
-                sprite.applyForce({x: moveForce, y: 0});
-            }
+            /*checks if is in air or sensors are triggered*/
+            if (!(isInAir && this.isTouching.left)) sprite.applyForce({x: -moveForce, y: 0});
+            /*checks if speed needs limits*/
+            if (velocity.x < -3 && !this.canPortal) sprite.setVelocityX(-3);
         }
-        if (velocity.x > 2) sprite.setVelocityX(2); else if (velocity.x < -2) sprite.setVelocityX(-2);
-
+        else if (isRightKeyDown) {
+            sprite.setFlipX(false);
+            if (!(isInAir && this.isTouching.right)) sprite.applyForce({x: moveForce, y: 0});
+            if (velocity.x > 3 && !this.canPortal) sprite.setVelocityX(3);
+        }
         if (isJumpKeyDown && this.canJump && isOnGround) {
             sprite.setVelocityY(-11);
 
@@ -289,21 +290,28 @@ export default class Player {
                 callback: () => (this.canJump = true)
             });
         }
+        if (isOnGround) {
+            if (sprite.body.force.x !== 0) sprite.anims.play("run", true);
+            else sprite.setTexture("player", 'walk/5.png');
+        } else {
+            sprite.anims.stop();
+            sprite.setTexture("player", 'run/0.png');
+        }
+        /*check portal status*/
         if(this.canPortal){
             this.portalEnabled = false;
-            let x = 0; let y = 0; let vx = 0; let vy = 0;
             if(this.origin === 2){
                 /*get coordinates*/
-                x = this.portal.A.coordinates.x;
-                y = this.portal.A.coordinates.y;
+                let x = this.portal.A.coordinates.x;
+                let y = this.portal.A.coordinates.y;
                 /*teleport player*/
                 this.sprite.setX(x).setY(y);
                 this.setSpeed(this.portal.A.coordinates.orientation);
             }
 
             else{
-                x = this.portal.B.coordinates.x;
-                y = this.portal.B.coordinates.y;
+                let x = this.portal.B.coordinates.x;
+                let y = this.portal.B.coordinates.y;
                 /*teleport player*/
                 this.sprite.setX(x).setY(y);
                 this.setSpeed(this.portal.B.coordinates.orientation);
@@ -311,17 +319,10 @@ export default class Player {
             /*reset*/
             this.canPortal = false;
             this.origin = 0;
-            this.portalCoolDown = this.scene.time.addEvent({
+            this.portalTimer = this.scene.time.addEvent({
                 delay: 400,
                 callback: () => (this.portalEnabled = true)
             });
-        }
-        if (isOnGround) {
-            if (sprite.body.force.x !== 0) sprite.anims.play("run", true);
-            else sprite.setTexture("player", 'walk/5.png');
-        } else {
-            sprite.anims.stop();
-            sprite.setTexture("player", 'run/0.png');
         }
     }
 

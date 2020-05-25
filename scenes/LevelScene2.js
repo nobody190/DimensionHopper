@@ -34,8 +34,8 @@ export class LevelScene2 extends Phaser.Scene{
 
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        const { x0, y0 } = map.findObject("Door", obj => obj.name === "Point");
-        this.door = this.add.image(x0, y0, 'exit_closed').setDepth(1);
+        const { x_, y_ } = map.findObject("Door", obj => obj.name === "Point");
+        this.door = this.add.image(x_, y_, 'exit_closed').setDepth(1);
         /*add player in spawn point*/
         const {x , y} = map.findObject("Spawn", obj => obj.name === "Point");
         this.player = new Player(this, x, y);
@@ -61,7 +61,7 @@ export class LevelScene2 extends Phaser.Scene{
         const door = this.door;
         const cam = this.cameras.main;
         const scene = this.scene;
-        const nextScene = CST.SCENES.LEVEL2;
+        const nextScene = CST.SCENES.LEVEL3;
         /*door opening animations happens only once*/
         this.levelClear();
         this.player.freeze();

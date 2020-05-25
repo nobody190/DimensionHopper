@@ -6,6 +6,7 @@ import {LevelScene3} from "../scenes/LevelScene3.js";
 import {OptionScene} from "../scenes/OptionScene.js";
 import {EndLevelScene} from "../scenes/EndLevelScene.js";
 import {PauseScene} from "../scenes/PauseScene.js";
+import {ContinueScene} from "../scenes/ContinueScene.js";
 
 export class LoadScene extends Phaser.Scene{
     constructor(){
@@ -42,6 +43,13 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("btn_off", "../sources/btn_off.png");
         this.load.image("restart", "../sources/restart.png");
         this.load.image("tileset", "../sources/tileset.png");
+        this.load.image("padlock", "../sources/padlock.png");
+        this.load.image("1", "../sources/1.png");
+        this.load.image("2", "../sources/2.png");
+        this.load.image("3", "../sources/3.png");
+        this.load.image("continueTitle", "../sources/continueTitle.png");
+        this.load.image("tutorial", "../sources/tutorial.png");
+        this.load.image("game", "../sources/game.png");
         /*load audio*/
         this.load.audio("mainTheme", "../sources/title_theme.mp3");
         this.load.audio("hoverSound", "../sources/move.wav");
@@ -49,6 +57,8 @@ export class LoadScene extends Phaser.Scene{
         this.load.atlas("player", "../sources/characterMoves.png", "../sources/characterMoves.json");
         this.load.atlas("bullet", "../sources/bullet.png", "../sources/bullet.json");
         this.load.atlas("portal", "../sources/portal.png", "../sources/portal.json");
+        /*load text*/
+        this.load.text("log", "../sources/log.txt");
         /*loading bar*/
         let loadingBar = this.add.graphics({
             fillStyle:{
@@ -66,9 +76,13 @@ export class LoadScene extends Phaser.Scene{
         });
     }
     create(){
+        /*get status*/
+        CST.STATUS = this.cache.text.get('log');
+        console.log(CST.STATUS);
         /*add scenes dynamically*/
         this.scene.add(CST.SCENES.MENU, MenuScene, false);
         this.scene.add(CST.SCENES.OPTIONS, OptionScene, false);
+        this.scene.add(CST.SCENES.CONTINUE, ContinueScene, false);
         this.scene.add(CST.SCENES.LEVEL1, LevelScene1, false);
         this.scene.add(CST.SCENES.LEVEL2, LevelScene2, false);
         this.scene.add(CST.SCENES.LEVEL3, LevelScene3, false);

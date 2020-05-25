@@ -12,7 +12,7 @@ export default class Portal {
         };
         /*generate frames*/
         var frames = this.anims.generateFrameNames('portal', {
-            start: 1, end: 8,
+            start: 1, end: 9,
             suffix: '.png'
         });
         /*animation*/

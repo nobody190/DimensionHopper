@@ -30,6 +30,7 @@ export class MenuScene extends Phaser.Scene{
         btn[4] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 120, "quit").setScale(0.5).setDepth(1);
         /*set interactivity*/
         for(let i = 0; i < 5; i++){
+            if(i === 1 && CST.STATUS === "0"){i++;btn[1].setTint(0x7f8c8d);}
             btn[i].setInteractive();
 
             btn[i].on("pointerover", ()=>{
@@ -50,6 +51,7 @@ export class MenuScene extends Phaser.Scene{
                         break;
                     case 1:
                         /*load continue*/
+                        this.scene.start(CST.SCENES.CONTINUE);
                         break;
                     case 2:
                         /*start in parallel*/

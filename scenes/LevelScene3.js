@@ -13,6 +13,8 @@ export class LevelScene3 extends Phaser.Scene{
         this.load.tilemapTiledJSON("level4", "../sources/Level4Tilemap.json");
     }
     create(){
+        this.sound.pauseOnBlur = false;
+        this.sound.play("levelTheme", {loop: true, volume: 0.5});
         /*background*/
         this.add.image(0, 0, 'sky').setOrigin(0, 0).setDepth(0);
         this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
@@ -110,32 +112,31 @@ export class LevelScene3 extends Phaser.Scene{
         const button = this.button;
         this.unsubscribeButtonCollide();
         /*Play button on sound*/
-
-        /*Check if shift is pressed*/
-
         /*Destroy Wall Layer*/
         this.wall.destroy();
         /*Change texture to on*/
         button.setTexture("btn_on");
     }
     onLevelClear() {
-        const door = this.door;
-        const cam = this.cameras.main;
-        const scene = this.scene;
-        const nextScene = CST.SCENES.LEVEL2;
         /*door opening animations happens only once*/
         this.unsubscribeDoorCollide();
         this.player.freeze();
         /*change door texture to opening*/
-        door.setTexture('exit_opening');
+        this.door.setTexture('exit_opening');
         /*delay*/
-        setTimeout(function(){
-            /*change door texture to opened*/
-            door.setTexture('exit_opened');
-            /*fade out to next level*/
-            cam.fade(250, 0, 0, 0);
-            cam.once("camerafadeoutcomplete", () => scene.start(nextScene));
-        }, 2000);
+        this.time.addEvent({
+            delay: 2000,
+            callback: ()=>{
+                CST.STATUS = '4';
+                this.sound.removeByKey("levelTheme");
+                /*change door texture to opened*/
+                this.cameras.main.fade(250, 0, 0, 0);
+                this.door.setTexture('exit_opened');
+                /*fade out to next level*/
+                this.cameras.main.fade(250, 0, 0, 0);
+                this.cameras.main.once("camerafadeoutcomplete", () => this.scene.start(CST.SCENES.LEVEL4));
+            },
+        });
     }
     onPlayerCollide({ gameObjectB }) {
         if (!gameObjectB || !(gameObjectB instanceof Phaser.Tilemaps.Tile)) return;
@@ -155,6 +156,7 @@ export class LevelScene3 extends Phaser.Scene{
         this.time.addEvent({
             delay: 500,
             callback: function () {
+                this.sound.removeByKey("levelTheme");
                 cam.resetFX();
                 this.scene.restart();
             },

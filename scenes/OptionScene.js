@@ -54,6 +54,7 @@ export class OptionScene extends Phaser.Scene{
                         btn[1].setTexture("musicOff");
                         break;
                     case 2:
+
                         this.scene.resume(CST.SCENES.MENU);
                         this.scene.stop(CST.SCENES.OPTIONS);
                         break;

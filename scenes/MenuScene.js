@@ -20,16 +20,15 @@ export class MenuScene extends Phaser.Scene{
         this.add.image(0, 0, "background").setOrigin(0).setDepth(0);
         /*play music*/
         this.sound.pauseOnBlur = false;
-        this.sound.play("mainTheme", {loop: true});
+        this.sound.play("mainTheme", {loop: true, volume: 0.5});
         /*buttons*/
         let btn = [];
         btn[0] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5, "play").setScale(0.5).setDepth(1);
         btn[1] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 30, "continue").setScale(0.5).setDepth(1);
         btn[2] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 60, "options").setScale(0.5).setDepth(1);
-        btn[3] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 90, "ranking").setScale(0.5).setDepth(1);
-        btn[4] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 120, "quit").setScale(0.5).setDepth(1);
+        btn[3] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 90, "quit").setScale(0.5).setDepth(1);
         /*set interactivity*/
-        for(let i = 0; i < 5; i++){
+        for(let i = 0; i < 4; i++){
             if(i === 1 && CST.STATUS === "0"){i++;btn[1].setTint(0x7f8c8d);}
             btn[i].setInteractive();
 
@@ -47,10 +46,12 @@ export class MenuScene extends Phaser.Scene{
                 switch (i) {
                     case 0:
                         /*load new game*/
+                        this.sound.removeByKey("mainTheme");
                         this.scene.start(CST.SCENES.LEVEL1);
                         break;
                     case 1:
                         /*load continue*/
+                        this.sound.removeByKey("mainTheme");
                         this.scene.start(CST.SCENES.CONTINUE);
                         break;
                     case 2:
@@ -58,10 +59,9 @@ export class MenuScene extends Phaser.Scene{
                         this.scene.launch(CST.SCENES.OPTIONS);
                         this.scene.pause(CST.SCENES.MENU);
                         break;
-                    case 4:
-                        /*load ranking*/
-                        break;
-                    case 5:
+                    case 3  :
+                        this.sound.removeByKey("mainTheme");
+                        this.scene.start(CST.SCENES.CREDIT);
                         /*quit*/
                         break;
                 }

@@ -7,6 +7,7 @@ import {OptionScene} from "../scenes/OptionScene.js";
 import {EndLevelScene} from "../scenes/EndLevelScene.js";
 import {PauseScene} from "../scenes/PauseScene.js";
 import {ContinueScene} from "../scenes/ContinueScene.js";
+import {CreditScene} from "../scenes/CreditScene.js";
 
 export class LoadScene extends Phaser.Scene{
     constructor(){
@@ -52,7 +53,9 @@ export class LoadScene extends Phaser.Scene{
         this.load.image("game", "../sources/game.png");
         /*load audio*/
         this.load.audio("mainTheme", "../sources/title_theme.mp3");
+        this.load.audio("levelTheme", "../sources/level_back_music.wav");
         this.load.audio("hoverSound", "../sources/move.wav");
+        this.load.audio("portalSound", "../sources/portalSound.mp3");
         /*atlas*/
         this.load.atlas("player", "../sources/characterMoves.png", "../sources/characterMoves.json");
         this.load.atlas("bullet", "../sources/bullet.png", "../sources/bullet.json");
@@ -88,6 +91,7 @@ export class LoadScene extends Phaser.Scene{
         this.scene.add(CST.SCENES.LEVEL3, LevelScene3, false);
         this.scene.add(CST.SCENES.LEVEL_END, EndLevelScene, false);
         this.scene.add(CST.SCENES.PAUSE, PauseScene, false);
+        this.scene.add(CST.SCENES.CREDIT, CreditScene, false);
         /*start scenes dynamically*/
         this.scene.start(CST.SCENES.MENU);
     }

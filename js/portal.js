@@ -29,6 +29,7 @@ export default class Portal {
         return this;
     }
     open(x, y, angle){
+        this.scene.sound.play("portalSound");
         this.sprite = this.scene.matter.add.sprite(x, y, 'portal', '1.png');
         this.sprite.anims.play("portal_anim", false);
         this.sprite

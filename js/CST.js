@@ -10,6 +10,8 @@ export const CST = {
         LEVEL4: "LEVEL4",
         LEVEL_END: "LEVEL_END",
         CONTINUE: "CONTINUE",
+        CREDIT: "CREDIT"
+
     },
     STATUS: '0',
 };

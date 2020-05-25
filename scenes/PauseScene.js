@@ -40,10 +40,12 @@ export class PauseScene extends Phaser.Scene{
                         this.scene.stop(CST.SCENES.PAUSE);
                         break;
                     case 1:
+                        this.sound.removeByKey("levelTheme");
                         this.scene.stop(this.previousScene);
                         this.scene.start(this.previousScene);
                         break;
                     case 2:
+                        this.sound.removeByKey("levelTheme");
                         this.scene.stop(this.previousScene);
                         this.scene.start(CST.SCENES.MENU);
                         break;

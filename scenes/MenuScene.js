@@ -46,6 +46,7 @@ export class MenuScene extends Phaser.Scene{
                 switch (i) {
                     case 0:
                         /*load new game*/
+                        CST.STATUS = 0;
                         this.sound.removeByKey("mainTheme");
                         this.scene.start(CST.SCENES.LEVEL1);
                         break;

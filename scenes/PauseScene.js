@@ -20,7 +20,6 @@ export class PauseScene extends Phaser.Scene{
         btn[0] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 30, "continue").setScale(0.5).setDepth(5);
         btn[1] = this.add.image(this.game.renderer.width/2,this.game.renderer.height/2.5 + 60,"restart").setScale(0.5).setDepth(5);
         btn[2] = this.add.image(this.game.renderer.width/2, this.game.renderer.height/2.5 + 90, "back").setScale(0.5).setDepth(5);
-        console.log("PAUSED!");
         /*set interactivity*/
         for(let i = 0; i < 3; i++){
             btn[i].setInteractive();

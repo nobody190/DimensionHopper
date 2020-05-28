@@ -41,7 +41,6 @@ export class LevelScene3 extends Phaser.Scene{
     }
     /*Pause events*/
     pausedClicked(){
-        console.log("Clicked!");
         this.scene.launch(CST.SCENES.PAUSE, this.scene);
         this.scene.pause(this.scene.key);
     }
@@ -60,7 +59,7 @@ export class LevelScene3 extends Phaser.Scene{
 
         this.matter.world.convertTilemapLayer(this.groundLayer);
         this.matter.world.convertTilemapLayer(this.ceilingLayer);
-        this.matter.world.convertTilemapLayer(this.wall);
+        this.collider = this.matter.world.convertTilemapLayer(this.wall);
     }
     /*set camera and boundaries*/
     setView() {
@@ -134,7 +133,7 @@ export class LevelScene3 extends Phaser.Scene{
                 this.door.setTexture('exit_opened');
                 /*fade out to next level*/
                 this.cameras.main.fade(250, 0, 0, 0);
-                this.cameras.main.once("camerafadeoutcomplete", () => this.scene.start(CST.SCENES.LEVEL4));
+                this.cameras.main.once("camerafadeoutcomplete", () => this.scene.start(CST.SCENES.MENU));
             },
         });
     }

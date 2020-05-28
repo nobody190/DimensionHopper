@@ -21,8 +21,9 @@ export class CreditScene extends Phaser.Scene {
         this.time.addEvent({
             delay: 2000,
             callback: ()=>{
-                if(this.number === 6){
+                if(this.number == 6){
                     this.game.destroy(true);
+                    return
                 }
                 if(this.number === 1){
                     this.frame[this.number].setVisible(true);
@@ -33,7 +34,8 @@ export class CreditScene extends Phaser.Scene {
                 }
                 this.number++;
             },
-            repeat: 5
+            repeat: 5,
+            loop: false
         })
     }
 };
